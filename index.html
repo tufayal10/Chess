@@ -10,11 +10,13 @@
   <div class="game-container">
     <h1>Online Chess Game</h1>
     
+    <!-- Game Mode Selection -->
     <div id="initialOptions">
       <button onclick="selectMode('create')">Create Game</button>
       <button onclick="selectMode('join')">Join Game</button>
     </div>
     
+    <!-- Create Game Form -->
     <div id="createGameForm" style="display: none;">
       <input type="text" id="creatorName" placeholder="Your Name" />
       <input type="text" id="creatorRoomId" placeholder="Room ID" />
@@ -22,6 +24,7 @@
       <button onclick="createGame()">Start Game</button>
     </div>
     
+    <!-- Join Game Form -->
     <div id="joinGameForm" style="display: none;">
       <input type="text" id="joinerName" placeholder="Your Name" />
       <input type="text" id="joinerRoomId" placeholder="Room ID" />
@@ -30,17 +33,23 @@
     
     <div class="status" id="status"></div>
     
+    <!-- Players Info + Timer -->
     <div id="playerNames"></div>
     <div id="timer"></div>
-    <div class="board" id="board"></div>
     
+    <!-- Chess Board -->
+    <div class="board" id="board"></div>
   </div>
 
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database-compat.js"></script>
+  
+  <!-- Firebase Config + App Logic -->
   <script src="con.js"></script>
   <script src="app.js"></script>
 
+  <!-- Game Mode Selector Script -->
   <script>
     function selectMode(mode) {
       document.getElementById("initialOptions").style.display = "none";
@@ -52,4 +61,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
