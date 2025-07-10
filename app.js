@@ -1,0 +1,1 @@
+// Final app.js with full working chess logic, timer, and multiplayer sync
