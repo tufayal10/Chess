@@ -46,8 +46,15 @@ function joinGame() {
 
   playerRole = "joiner";
 
-  db.ref("games/" + roomId + "/joiner").set(playerName);
-  startGameAfterJoin();
+  db.ref("games/" + roomId).get().then((snapshot) => {
+    if (!snapshot.exists()) {
+      alert("Room ID not found!");
+      return;
+    }
+
+    db.ref("games/" + roomId + "/joiner").set(playerName);
+    startGameAfterJoin();  // Start listening right after joining
+  });
 }
 
 function waitForJoiner() {
@@ -66,6 +73,7 @@ function startGameAfterJoin() {
   db.ref("games/" + roomId).on("value", (snapshot) => {
     const gameData = snapshot.val();
     if (!gameData) return;
+    if (!gameData.board) return;  // Prevent error before board is ready
 
     document.getElementById("playerNames").innerText = 
       `You: ${playerName} | Opponent: ${playerRole === "creator" ? gameData.joiner : gameData.creator}`;
