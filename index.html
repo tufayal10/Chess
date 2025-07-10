@@ -1,1 +1,55 @@
-<!-- Final index.html with full working chess multiplayer -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Chess Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-container">
+    <h1>Online Chess Game</h1>
+    
+    <div id="initialOptions">
+      <button onclick="selectMode('create')">Create Game</button>
+      <button onclick="selectMode('join')">Join Game</button>
+    </div>
+    
+    <div id="createGameForm" style="display: none;">
+      <input type="text" id="creatorName" placeholder="Your Name" />
+      <input type="text" id="creatorRoomId" placeholder="Room ID" />
+      <input type="number" id="moveTime" placeholder="Time per Move (seconds)" min="5" />
+      <button onclick="createGame()">Start Game</button>
+    </div>
+    
+    <div id="joinGameForm" style="display: none;">
+      <input type="text" id="joinerName" placeholder="Your Name" />
+      <input type="text" id="joinerRoomId" placeholder="Room ID" />
+      <button onclick="joinGame()">Join Game</button>
+    </div>
+    
+    <div class="status" id="status"></div>
+    
+    <div id="playerNames"></div>
+    <div id="timer"></div>
+    <div class="board" id="board"></div>
+    
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database-compat.js"></script>
+  <script src="con.js"></script>
+  <script src="app.js"></script>
+
+  <script>
+    function selectMode(mode) {
+      document.getElementById("initialOptions").style.display = "none";
+      if (mode === "create") {
+        document.getElementById("createGameForm").style.display = "block";
+      } else {
+        document.getElementById("joinGameForm").style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
